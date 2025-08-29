@@ -13,7 +13,10 @@ export class AuthService {
     if (existingProfile) {
       throw new Error('Username already taken');
     }
-
+    const { data, error } = await supabase.auth.signUp({
+      email: 'testuser@example.com',
+      password: 'password123',
+    })
     // Sign up the user
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
